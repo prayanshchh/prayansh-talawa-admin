@@ -711,7 +711,8 @@
     "selectOrganization": "Select an organization",
     "searchUsers": "Search users",
     "nothingToShow": "Nothing to show here.",
-    "organizations": "Organizations"
+    "organizations": "Organizations",
+    "searchOrganizations": "Search organizations"
   },
   "userSidebarOrg": {
     "yourOrganizations": "Your Organizations",

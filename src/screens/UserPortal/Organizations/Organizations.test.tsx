@@ -440,7 +440,7 @@ describe('Testing Organizations Screen [User Portal]', () => {
     expect(joinNowButtons.length).toBeGreaterThan(0);
   });
 
-  test('Mode is changed to created organizations', async () => {
+  test('Mode is changed to created organizations (2)', async () => {
     render(
       <MockedProvider addTypename={false} link={link}>
         <BrowserRouter>
@@ -507,5 +507,45 @@ describe('Testing Organizations Screen [User Portal]', () => {
     const settingsBtn = screen.getByTestId('settingsBtn');
 
     settingsBtn.click();
+  });
+
+  test('Rows per Page values', async () => {
+    render(
+      <MockedProvider addTypename={false} link={link}>
+        <BrowserRouter>
+          <Provider store={store}>
+            <I18nextProvider i18n={i18nForTest}>
+              <Organizations />
+            </I18nextProvider>
+          </Provider>
+        </BrowserRouter>
+      </MockedProvider>,
+    );
+    await wait();
+    const dropdown = screen.getByTestId('table-pagination');
+    userEvent.click(dropdown);
+    expect(screen.getByText('5')).toBeInTheDocument();
+    expect(screen.getByText('10')).toBeInTheDocument();
+    expect(screen.getByText('30')).toBeInTheDocument();
+    expect(screen.getByText('All')).toBeInTheDocument();
+  });
+
+  test('Search input has correct placeholder text', async () => {
+    render(
+      <MockedProvider addTypename={false} link={link}>
+        <BrowserRouter>
+          <Provider store={store}>
+            <I18nextProvider i18n={i18nForTest}>
+              <Organizations />
+            </I18nextProvider>
+          </Provider>
+        </BrowserRouter>
+      </MockedProvider>,
+    );
+
+    await wait();
+
+    const searchInput = screen.getByPlaceholderText('Search organizations');
+    expect(searchInput).toBeInTheDocument();
   });
 });
